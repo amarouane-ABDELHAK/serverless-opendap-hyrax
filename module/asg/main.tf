@@ -14,6 +14,12 @@ resource "aws_security_group" "ecs-security-group-elb" {
     to_port     = 8080
     cidr_blocks = ["0.0.0.0/0"]
   }
+  ingress {
+    protocol    = "tcp"
+    from_port   = 5000
+    to_port     = 5000
+    cidr_blocks = ["0.0.0.0/0"]
+  }
   tags = {
     Name = "ecs sec"
   }
@@ -28,6 +34,12 @@ resource "aws_security_group" "ecs_tasks" {
     protocol        = "tcp"
     from_port       = 8080
     to_port         = 8080
+    security_groups = [aws_security_group.ecs-security-group-elb.id]
+  }
+  ingress {
+    protocol        = "tcp"
+    from_port       = 5000
+    to_port         = 5000
     security_groups = [aws_security_group.ecs-security-group-elb.id]
   }
 

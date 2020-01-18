@@ -16,7 +16,17 @@ resource "aws_iam_role_policy" "ecs_task_assume" {
     "logs:PutLogEvents"
     ],
     "Resource":"*"
-  }
+  },
+  {
+     "Effect": "Allow",
+     "Action": [
+       "s3:GetObject"
+     ],
+     "Resource": [
+       "arn:aws:s3:::amarouane-opendap-data/*",
+       "arn:aws:s3:::*/amarouane-opendap-data/*"
+     ]
+     }
   ]
 }
 EOF
@@ -41,8 +51,8 @@ resource "aws_iam_role" "ecs_task_assume" {
 EOF
 }
 
-resource "aws_iam_role" "ecsTaskExcutionRole" {
-  name               = "ecsTaskExcutionRoleMyOpendap"
+resource "aws_iam_role" "ecsTaskExcutionRoleGH" {
+  name               = "ecsTaskExcutionRoleGHOpendap"
   assume_role_policy = <<EOF
 {
 "Version": "2012-10-17",
@@ -62,5 +72,5 @@ EOF
 
 resource "aws_iam_role_policy_attachment" "TaskExecutionPolicyAttachement" {
   policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonECSTaskExecutionRolePolicy"
-  role       = aws_iam_role.ecsTaskExcutionRole.name
+  role       = aws_iam_role.ecsTaskExcutionRoleGH.name
 }

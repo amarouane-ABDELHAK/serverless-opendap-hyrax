@@ -10,3 +10,5 @@ variable "target_group_arn" {}
 variable "container_name" {}
 
 variable "res_depends_on" {}
+
+variable "new_target_group_arn" {}

@@ -1,7 +1,7 @@
 [
   {
     "essential": true,
-    "memory": 1024,
+    "memory": 2048,
     "name": "${TASK_FAMILY_NAME}",
     "cpu": 1024,
     "image" : "${REPOSITORY_URL}",
@@ -15,7 +15,7 @@
       },
       {
         "containerPort": 8080,
-        "hostPort": 80
+        "hostPort": 8080
       }
     ]
   }

@@ -1,5 +1,5 @@
 output "ecsTaskExcutionRole_arn" {
-  value = aws_iam_role.ecsTaskExcutionRole.arn
+  value = aws_iam_role.ecsTaskExcutionRoleGH.arn
 }
 
 output "ecs_task_assume_arn" {
