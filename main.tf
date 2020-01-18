@@ -19,7 +19,7 @@ module "iam_role" {
 
 module "opendap_ecr" {
   source   = "./module/ecr"
-  ecr_name = "ghrc_opendap_ecr"
+  ecr_name = "am-ghrc"
 }
 
 module "opendap_ecs" {
@@ -31,7 +31,7 @@ module "opendap_task" {
   source             = "./module/task"
   execution_role_arn = module.iam_role.ecsTaskExcutionRole_arn
   task_role_arn      = module.iam_role.ecs_task_assume_arn
-  repository_url     = module.opendap_ecr.sls-opendap-ecr-url.repository_url
+  repository_url     = "${module.opendap_ecr.sls-opendap-ecr-url.repository_url}-opendap}"
 }
 
 module "alb" {
@@ -52,3 +52,7 @@ module "opendap_service" {
   container_name      = module.opendap_task.container_name
   res_depends_on      = module.alb.front_end
 }
+
+//module "logs" {
+//  source = "./module/cloudwatch"
+//}

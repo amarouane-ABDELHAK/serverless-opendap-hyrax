@@ -1,9 +1,9 @@
 [
   {
     "essential": true,
-    "memory": 256,
+    "memory": 1024,
     "name": "${TASK_FAMILY_NAME}",
-    "cpu": 256,
+    "cpu": 1024,
     "image" : "${REPOSITORY_URL}",
     "networkMode": "awsvpc",
     "workingDirectory": "/",
@@ -15,7 +15,7 @@
       },
       {
         "containerPort": 8080,
-        "hostPort": 8080
+        "hostPort": 80
       }
     ]
   }

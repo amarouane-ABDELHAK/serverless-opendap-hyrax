@@ -1,5 +1,5 @@
 resource "aws_iam_role_policy" "ecs_task_assume" {
-  name   = "ecs_task_assume"
+  name   = "ecs_task_role_policy_assume"
   role   = aws_iam_role.ecs_task_assume.id
   policy = <<EOF
 {
@@ -23,7 +23,7 @@ EOF
 }
 
 resource "aws_iam_role" "ecs_task_assume" {
-  name               = "ecs_task_assume"
+  name               = "ecs_task_role_assume"
   assume_role_policy = <<EOF
 {
 "Version": "2012-10-17",
@@ -42,7 +42,7 @@ EOF
 }
 
 resource "aws_iam_role" "ecsTaskExcutionRole" {
-  name               = "ecsTaskExcutionRole"
+  name               = "ecsTaskExcutionRoleMyOpendap"
   assume_role_policy = <<EOF
 {
 "Version": "2012-10-17",
