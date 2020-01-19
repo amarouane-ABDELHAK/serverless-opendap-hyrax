@@ -23,6 +23,9 @@ RUN pip install -r /root/requirements.txt
 
 COPY dmrpp.conf dmrpp.conf
 
+RUN rm -r /usr/share/hyrax/data && \
+    mkdir -p /usr/share/hyrax/data/ghrc_data
+
 EXPOSE 5000
 
 ENTRYPOINT []
