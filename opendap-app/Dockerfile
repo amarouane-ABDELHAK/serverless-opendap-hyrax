@@ -23,10 +23,11 @@ RUN pip install -r /root/requirements.txt
 
 COPY dmrpp.conf dmrpp.conf
 
-RUN rm -r /usr/share/hyrax/data && \
+RUN rm -r /usr/share/hyrax/data/* && \
     mkdir -p /usr/share/hyrax/data/ghrc_data
 
 EXPOSE 5000
-
+# For debug
+RUN pip install ipython
 ENTRYPOINT []
 #ENTRYPOINT [ "supervisord", "-c", "/etc/supervisord.conf" ]
