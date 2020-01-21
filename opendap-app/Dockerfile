@@ -14,7 +14,7 @@ RUN pip install supervisor
 RUN yum -y install nano
 
 
-COPY entry_point.sh /root/entry_point.sh
+
 COPY supervisord.conf /etc/supervisord.conf
 COPY app.py /root/app.py
 COPY requirements.txt /root/requirements.txt
@@ -24,7 +24,14 @@ RUN pip install -r /root/requirements.txt
 COPY dmrpp.conf dmrpp.conf
 
 RUN rm -r /usr/share/hyrax/data/* && \
-    mkdir -p /usr/share/hyrax/data/ghrc_data
+    mkdir -p /usr/share/hyrax/data/ghrc_data && \
+    touch /usr/share/hyrax/data/ghrc_data/example.tx
+RUN  sed -i \
+-e 's/NodeCache.*/NodeCache maxEntries="20000" refreshInterval="8"\/\>/g' \
+/var/lib/tomcat/webapps/opendap/WEB-INF/conf/olfs.xml
+
+COPY cron_workers.py /root/cron_workers.py
+COPY sync_files.sh /root/sync_files.sh
 
 EXPOSE 5000
 # For debug

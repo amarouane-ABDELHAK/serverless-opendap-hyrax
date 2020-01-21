@@ -51,11 +51,9 @@ def run_command(cmd):
     #     raise RuntimeError('Error running %s' % str(e))
 
 
-@app.route("/")
+@app.route("/convtojson")
 def hello():
     file_path = request.args.get('path')
-    print(file_path)
-
     re = get(f"http://localhost:8080/opendap/data/{file_path}.json")
     return re.content
 
@@ -63,12 +61,19 @@ def hello():
 @app.route("/get")
 def getfile():
     file_path = request.args.get('s3path')
-    get_file_cmd = f"aws s3 cp {file_path} /usr/share/hyrax/data/."
-    #get_file_cmd = f"aws s3 cp {file_path} /usr/share/hyrax/data/."
     try:
-        #run_command(get_file_cmd)
         res = use_boto3(file_path)
         return {'Success': res}
+    except Exception as e:
+        return {'Error': str(e)}
+
+
+@app.route("/list")
+def list_files():
+    try:
+        cmd = "ls /usr/share/hyrax/data/ghrc_data/"
+        res = run_command(cmd)
+        return {'Success': str(res)}
     except Exception as e:
         return {'Error': str(e)}
 
