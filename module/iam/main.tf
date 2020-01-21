@@ -13,20 +13,11 @@ resource "aws_iam_role_policy" "ecs_task_assume" {
     "ecr:GetDownloadUrlForLayer",
     "ecr:BatchGetImage",
     "logs:CreateLogStream",
-    "logs:PutLogEvents"
+    "logs:PutLogEvents",
+    "s3:*"
     ],
     "Resource":"*"
-  },
-  {
-     "Effect": "Allow",
-     "Action": [
-       "s3:GetObject"
-     ],
-     "Resource": [
-       "arn:aws:s3:::amarouane-opendap-data/*",
-       "arn:aws:s3:::*/amarouane-opendap-data/*"
-     ]
-     }
+  }
   ]
 }
 EOF

@@ -24,8 +24,7 @@ RUN pip install -r /root/requirements.txt
 COPY dmrpp.conf dmrpp.conf
 
 RUN rm -r /usr/share/hyrax/data/* && \
-    mkdir -p /usr/share/hyrax/data/ghrc_data && \
-    touch /usr/share/hyrax/data/ghrc_data/example.tx
+    mkdir -p /usr/share/hyrax/data/ghrc_data
 RUN  sed -i \
 -e 's/NodeCache.*/NodeCache maxEntries="20000" refreshInterval="8"\/\>/g' \
 /var/lib/tomcat/webapps/opendap/WEB-INF/conf/olfs.xml
@@ -35,6 +34,6 @@ COPY sync_files.sh /root/sync_files.sh
 
 EXPOSE 5000
 # For debug
-RUN pip install ipython
+#RUN pip install ipython
 ENTRYPOINT []
 #ENTRYPOINT [ "supervisord", "-c", "/etc/supervisord.conf" ]
