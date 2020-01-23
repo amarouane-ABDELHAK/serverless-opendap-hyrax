@@ -7,3 +7,7 @@ variable "aws_profile" {
   type    = string
   default = "GHRC"
 }
+
+variable "opendap_bucket" {
+  default = "amarouane-opendap-data"
+}

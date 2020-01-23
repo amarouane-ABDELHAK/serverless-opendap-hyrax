@@ -32,6 +32,7 @@ module "opendap_task" {
   execution_role_arn = module.iam_role.ecsTaskExcutionRole_arn
   task_role_arn      = module.iam_role.ecs_task_assume_arn
   repository_url     = module.opendap_ecr.sls-opendap-ecr-url.repository_url
+  opendap_bucket = var.opendap_bucket
 }
 
 module "alb" {

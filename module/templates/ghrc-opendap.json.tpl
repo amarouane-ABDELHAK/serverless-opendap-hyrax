@@ -8,6 +8,10 @@
     "networkMode": "awsvpc",
     "workingDirectory": "/",
     "command": [ "supervisord", "-c", "/etc/supervisord.conf" ],
+    "environment": [{
+      "name": "OPENDAP_BUCKET",
+      "value": "${OPENDAP_BUCKET}"
+    }],
     "portMappings": [
       {
         "containerPort": 5000,

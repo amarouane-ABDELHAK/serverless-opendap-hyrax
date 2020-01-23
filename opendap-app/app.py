@@ -1,7 +1,7 @@
 from flask import Flask, request
 from requests import get
 import boto3
-from os import path, listdir
+from os import path, listdir, environ
 from pathlib import Path
 
 import subprocess

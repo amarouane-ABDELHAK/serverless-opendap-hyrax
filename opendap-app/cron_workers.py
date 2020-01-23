@@ -1,6 +1,7 @@
 import schedule
 import subprocess
 import time
+from os import environ
 
 def run_command(cmd):
     """ Run cmd as a system command """
@@ -12,6 +13,7 @@ def run_command(cmd):
 
 
 def sync_s3(bucket_name='amarouane-opendap-data'):
+    bucket_name = environ.get('OPENDAP_BUCKET', bucket_name)
     cmd = f"bash /root/sync_files.sh {bucket_name}"
     run_command(cmd)
 

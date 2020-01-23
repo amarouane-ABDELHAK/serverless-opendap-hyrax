@@ -3,6 +3,7 @@ data "template_file" "ghrc-opendap-task-definition" {
   vars = {
     REPOSITORY_URL = var.repository_url
     TASK_FAMILY_NAME = var.task_family_name
+    OPENDAP_BUCKET = var.opendap_bucket
   }
 
 }

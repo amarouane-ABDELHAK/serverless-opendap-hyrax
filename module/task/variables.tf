@@ -8,3 +8,4 @@ variable "task_family_name" {
 
 variable "execution_role_arn" {}
 variable "task_role_arn" {}
+variable "opendap_bucket" {}
